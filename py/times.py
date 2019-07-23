@@ -1,4 +1,4 @@
-import read
+import reduce
 import dateutil
 
 
@@ -15,7 +15,7 @@ def get_day(dt):
 
 
 def count_hour():
-    df = read.load_data()
+    df = reduce.load_data()
     sub_hour = df["submission_time"].apply(lambda x: get_hour(x))
     hour_freq = sub_hour.value_counts()
     counter = 0
@@ -24,7 +24,7 @@ def count_hour():
 
 
 def count_day():
-    df = read.load_data()
+    df = reduce.load_data()
     sub_day = df["submission_time"].apply(lambda x: get_day(x))
     day_freq = sub_day.value_counts()
     counter = 0
@@ -33,5 +33,5 @@ def count_day():
 
 
 if __name__ == "__main__":
-    # count_hour()
-    count_day()
+    count_hour()
+    # count_day()
