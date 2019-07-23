@@ -13,7 +13,7 @@ def count_upvote():
 
 def max_upvote():
     df = reduce.load_data()
-    df.sort_values("upvotes", inplace=True)
+    df.sort_values("upvotes", inplace=True, ascending=False)
     print(df.head(10))
     return df
 
