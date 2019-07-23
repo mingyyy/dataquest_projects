@@ -1,8 +1,8 @@
-import read
+import reduce
 
 
 def count_word():
-    df = read.load_data()
+    df = reduce.load_data()
     counter = 0
     hl = ""
     for line in df["headline"]:

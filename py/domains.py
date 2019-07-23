@@ -1,8 +1,8 @@
-import read
+import reduce
 
 
 def count_word():
-    df = read.load_data()
+    df = reduce.load_data()
     domains = df["url"].value_counts()
     counter = 0
     for name, row in domains.items():
