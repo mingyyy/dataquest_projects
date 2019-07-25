@@ -8,15 +8,8 @@ from math import ceil
 
 def isprime(x):
     result = True
-    # for i in range(2, x):
-    #     if x % i == 0:
-    #         result = False
-    #         return result
-    # return result
-
-    m = ceil(x**0.5)
-    for i in range(2, m):
-        if x % i == 0 or x % (x-i) == 0:
+    for i in range(2, x):
+        if x % i == 0:
             result = False
             return result
     return result
@@ -31,14 +24,6 @@ def max_prime_factor(n):
         m = n/2
     else:
         m = (n+1)/2
-
-    # for i in range(2, int(m)):
-    #     j = int(n / i)
-    #     if n % i == 0 and isprime(i) is True:
-    #         factor = max(i, factor)
-    #     elif n % j == 0 and isprime(j) is True:
-    #         factor = max(j, factor)
-    #     return factor
 
     for i in range(2, int(m)):
         if n % i == 0 and isprime(i) is True:
@@ -72,4 +57,3 @@ print(f'--{time.time() - start_time} seconds--')
 # sqrt isprime
 # 3439333
 # --526.5467047691345 seconds--
-
