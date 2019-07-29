@@ -30,16 +30,19 @@ def max_prime_factor(n):
             factor = i
     return factor
 
-    # backward loop
-    # for i in range(n-1, 1, -1):
-    #     if n % i == 0 and isprime(i) is True:
-    #         factor = i
-    #         return factor
-    # return factor
+# slower than 1
+def max_prime_factor_2(n):
+    if isprime(n) is True:
+        return n
+    for i in range(2, int(n)):
+        if n % i == 0 and isprime(i) is True:
+            n = n / i
+            res = i
+    return res
 
 
 start_time = time.time()
-print(max_prime_factor(6008514751))
+print(max_prime_factor_2(60085147))
 print(f'--{time.time() - start_time} seconds--')
 
 # forward 6008514751
@@ -57,3 +60,11 @@ print(f'--{time.time() - start_time} seconds--')
 # sqrt isprime
 # 3439333
 # --526.5467047691345 seconds--
+
+# method 2  6008514
+# 58907
+# --0.7148058414459229 seconds--
+
+# method 1 6008514
+# 58907
+# --0.32723093032836914 seconds--
