@@ -3,7 +3,19 @@ The prime factors of 13195 are 5, 7, 13 and 29.
 What is the largest prime factor of the number 600851475143 ?
 """
 import time
-from math import ceil
+import sys
+
+
+class recursionlimit:
+    def __init__(self, limit):
+        self.limit = limit
+        self.old_limit = sys.getrecursionlimit()
+
+    def __enter__(self):
+        sys.setrecursionlimit(self.limit)
+
+    def __exit__(self, type, value, tb):
+        sys.setrecursionlimit(self.old_limit)
 
 
 def isprime(x):
@@ -41,9 +53,23 @@ def max_prime_factor_2(n):
     return res
 
 
+def primeFact(i, f):
+    if i < f:
+        return []
+    if i % f == 0:
+        return [f] + primeFact(i / f, 2)
+    return primeFact(i, f + 1)
+
 start_time = time.time()
-print(max_prime_factor_2(60085147))
+print(max_prime_factor(600851))
 print(f'--{time.time() - start_time} seconds--')
+
+
+start_time = time.time()
+with recursionlimit(200000):
+    print(primeFact(600851, 2))
+print(f'--{time.time() - start_time} seconds--')
+
 
 # forward 6008514751
 # 3439333
