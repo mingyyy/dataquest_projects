@@ -27,6 +27,7 @@ def isprime(x):
     return result
 
 
+# method 1
 def max_prime_factor(n):
     if isprime(n) is True:
         return n
@@ -42,7 +43,8 @@ def max_prime_factor(n):
             factor = i
     return factor
 
-# slower than 1
+
+# method 2 (slower than 1)
 def max_prime_factor_2(n):
     if isprime(n) is True:
         return n
@@ -53,12 +55,14 @@ def max_prime_factor_2(n):
     return res
 
 
+# method 3 (faster with recursion limitation)
 def primeFact(i, f):
     if i < f:
         return []
     if i % f == 0:
         return [f] + primeFact(i / f, 2)
     return primeFact(i, f + 1)
+
 
 start_time = time.time()
 print(max_prime_factor(600851))
@@ -94,3 +98,8 @@ print(f'--{time.time() - start_time} seconds--')
 # method 1 6008514
 # 58907
 # --0.32723093032836914 seconds--
+
+# 20719
+# --0.034628868103027344 seconds--
+# [29, 20719]
+# --0.02172398567199707 seconds--
