@@ -23,3 +23,5 @@ def prime_nth(n):
 
 if __name__ == "__main__":
     print(prime_nth(10001))
+
+# 104743
