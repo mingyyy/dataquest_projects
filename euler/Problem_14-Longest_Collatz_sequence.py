@@ -24,8 +24,10 @@ def terms(n):
 
 longest_chain = 179
 number = 871
-for n in range(1000, 10000):
+for n in range(1, 1000000):
     if terms(n) > longest_chain:
         longest_chain = terms(n)
         number = n
-print(number, longest_chain)
+print(f'The starting number {number} produces the longest chain: {longest_chain}.')
+
+#less than 1,000,000, The starting number 837799 produces the longest chain: 525.
