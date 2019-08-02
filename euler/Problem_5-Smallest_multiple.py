@@ -52,3 +52,5 @@ def find_smallest(n):
     return res, l
                 
 print(find_smallest(20))
+
+#(232792560, [11, 13, 7, 2, 17, 2, 3, 3, 19, 2, 2, 5])
