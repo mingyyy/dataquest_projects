@@ -105,6 +105,37 @@ t='''
 
 rows = t.split('\n')
 digits = {}
+# dictionary: key is the column number and values being the sum of the column
 for row in rows:
-    for d in row:
-        print(int(d))
+    for i, d in enumerate(row):
+        key = 50 - i
+        value = int(d)
+        if key in digits:
+            # digits[key].append(value)
+            digits[key] += value
+        else:
+            # digits[key] = [value]
+            digits[key] = value
+
+s = 0
+for d in range(50, 39, -1):
+    for k, v in digits.items():
+        if int(k)==int(d):
+            print(k, v, v*10**(d-40))
+            s += v*10**(d-40)
+print(s)
+print("The first ten digits are:")
+for i in str(s)[:10]:
+    print(i)
+
+#The first ten digits are:
+# 5
+# 5
+# 3
+# 7
+# 3
+# 7
+# 6
+# 2
+# 3
+# 0
