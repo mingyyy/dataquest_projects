@@ -36,3 +36,4 @@ def largest_palindrome_product(d):
 
 print(largest_palindrome_product(3))
 
+#(995, 583, 580085)
