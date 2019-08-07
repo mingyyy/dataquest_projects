@@ -5,6 +5,29 @@ Find the sum of all the primes below two million.
 import time
 
 
+def isprime2(n):
+    """Returns True if n is prime."""
+    if n == 2:
+        return True
+    if n == 3:
+        return True
+    if n % 2 == 0:
+        return False
+    if n % 3 == 0:
+        return False
+
+    i = 5
+    w = 2
+
+    while i * i <= n:
+        if n % i == 0:
+            return False
+        i += w
+        w = 6 - w
+
+    return True
+
+
 def isprime(x):
     result = True
     for i in range(2, x):
@@ -17,15 +40,19 @@ def isprime(x):
 def prime_sum(m, n):
     s = 0
     for i in range(m, n):
-        if isprime(i):
+        if isprime2(i):
             s += i
     return s
 
 
 if __name__ == "__main__":
     start_time = time.time()
-    print(prime_sum(1800001, 2000000))
+    print(prime_sum(2, 2000000))
     print(f'--{time.time() - start_time} seconds--')
+
+# with isprime2 method
+# 142913828922
+# --13.322953939437866 seconds--
 
 # from 2 a 50,000
 # 121013308
