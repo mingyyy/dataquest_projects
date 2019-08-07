@@ -27,9 +27,34 @@ def isprime(x):
     return result
 
 
+# good resources for prime number quick search
+# https://stackoverflow.com/questions/1801391/how-to-create-the-most-compact-mapping-n-→-isprimen-up-to-a-limit-n#1801446
+def isprime2(n):
+    """Returns True if n is prime."""
+    if n == 2:
+        return True
+    if n == 3:
+        return True
+    if n % 2 == 0:
+        return False
+    if n % 3 == 0:
+        return False
+
+    i = 5
+    w = 2
+
+    while i * i <= n:
+        if n % i == 0:
+            return False
+        i += w
+        w = 6 - w
+
+    return True
+
+
 # method 1
 def max_prime_factor(n):
-    if isprime(n) is True:
+    if isprime2(n) is True:
         return n
     factor = 0
 
@@ -39,7 +64,7 @@ def max_prime_factor(n):
         m = (n+1)/2
 
     for i in range(2, int(m)):
-        if n % i == 0 and isprime(i) is True:
+        if n % i == 0 and isprime2(i) is True:
             factor = i
     return factor
 
@@ -65,41 +90,33 @@ def primeFact(i, f):
 
 
 start_time = time.time()
-print(max_prime_factor(600851))
+print(max_prime_factor(6008514751))
 print(f'--{time.time() - start_time} seconds--')
 
 
-start_time = time.time()
-with recursionlimit(200000):
-    print(primeFact(600851, 2))
-print(f'--{time.time() - start_time} seconds--')
+# start_time = time.time()
+# with recursionlimit(200000):
+#     print(primeFact(600851, 2))
+# print(f'--{time.time() - start_time} seconds--')
 
 
 # forward 6008514751
 # 3439333
 # --1120.0235137939453 seconds--
 
-# backward
+# backward 6008514751
 # 3439333
 # --1107.7401769161224 seconds--
 
-# half
+# half 6008514751
 # 3439333
 # --541.6724359989166 seconds--
 
-# sqrt isprime
+# sqrt isprime 6008514751
 # 3439333
 # --526.5467047691345 seconds--
 
-# method 2  6008514
-# 58907
-# --0.7148058414459229 seconds--
+# with isprime2 method 6008514751
+# 3439333
+# --607.6169321537018 seconds--
 
-# method 1 6008514
-# 58907
-# --0.32723093032836914 seconds--
-
-# 20719
-# --0.034628868103027344 seconds--
-# [29, 20719]
-# --0.02172398567199707 seconds--

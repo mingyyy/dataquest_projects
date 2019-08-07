@@ -9,10 +9,10 @@
 - Problem_7: done
 - Problem_8: done
 - Problem_9: done
-- Problem_10: performance issue. solved with piece meal. takes too long! Faster way to check prime?
+- Problem_10: done. (faster isprime method)
 - Problem_11: TBC
 - Problem_12: performance issue. 480 divisor now. 
-- Problem_13: TBC
+- Problem_13: done
 - Problem_14: done
-- Problem_15: TBC 
+- Problem_15: done 
 - Problem_16: done
