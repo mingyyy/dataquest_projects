@@ -24,6 +24,15 @@ If you were only permitted to complete at most one transaction (i.e., buy one an
 Note that you cannot sell a stock before you buy one.
 
 ##### Status:
-Limit exceed
+Time Limit Exceeded
 
+
+### 29. 
+##### Question:
+Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.
+Return the quotient after dividing dividend by divisor.
+The integer division should truncate toward zero.
+
+##### Status:
+Time Limit Exceeded
 
