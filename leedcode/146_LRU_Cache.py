@@ -5,33 +5,37 @@ class LRUCache:
         self.cache = {}
         self.pos = {}
 
+    def pos_key(self, last: bool) -> int:
+            # last = True -> get key with the highest score (last used)
+            # last = False -> get the least recent used key
+
+            if len(self.pos) > 0:
+                sorted_pos = sorted(self.pos.items(), key=lambda kv: kv[1])
+                if last is True:
+                    highest_score = sorted_pos[-1][1]
+                    return highest_score
+                else:
+                    key = sorted_pos[0][0]
+                    return key
+            else:
+                return 0
+
     def get(self, key: int) -> int:
         if key in self.cache:
-            sorted_pos = sorted(self.pos.items(), key=lambda kv: kv[1])
-            k = sorted_pos[min(self.capacity, len(self.cache)) - 1][1]
+            k = self.pos_key(last=True)
             self.pos[key] = k + 1
             return self.cache[key]
         else:
             return -1
 
     def put(self, key: int, value: int) -> None:
-
-        if len(self.cache) < self.capacity:
-            if len(self.pos) == 0:
-                self.pos[key] = len(self.cache)
-            else:
-                sorted_pos = sorted(self.pos.items(), key=lambda kv: kv[1])
-                self.pos[key] = sorted_pos[min(self.capacity, len(self.cache)) - 1][1] + 1
-            self.cache[key] = value
-        else:
-
-            sorted_pos = sorted(self.pos.items(), key=lambda kv: kv[1])
-            k = sorted_pos[0][0]
-            self.pos[key] = sorted_pos[min(self.capacity, len(self.cache)) - 1][1] + 1
-            if key not in self.cache:
-                del self.cache[k]
-                del self.pos[k]
-            self.cache[key] = value
+        if len(self.cache) == self.capacity and key not in self.cache:
+            least_key = self.pos_key(last=False)
+            self.cache[key] = self.cache.pop(least_key)
+            self.pos[key] = self.pos.pop(least_key)
+        k = self.pos_key(last=True)
+        self.pos[key] = k + 1
+        self.cache[key] = value
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
