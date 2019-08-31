@@ -24,6 +24,7 @@ The product of these numbers is 26 × 63 × 78 × 14 = 1788696.
 What is the greatest product of four adjacent numbers in the same direction
 (up, down, left, right, or diagonally) in the 20×20 grid?
 """
+#(0,3) * (1,2) * (2, 1) * (3, 0)
 grid="""08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
         49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
         81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65
@@ -44,6 +45,32 @@ grid="""08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
         20 69 36 41 72 30 23 88 34 62 99 69 82 67 59 85 74 04 36 16
         20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
         01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48"""
+
+
+def same_dia_l2r(n):
+    rows = grid.split("\n")
+    col = 0
+    matrix = []
+    max_prod = 1
+    for row in rows:
+        xrow = row.split()
+        r=[]
+        for x in xrow:
+            r.append(int(x))
+        matrix.append(r)
+        col += 1
+    # (0,3) * (1,2) * (2, 1) * (3, 0)
+    # (0,4) * (1,3) * (2, 2) * (3, 1)
+    # (0,19) * (1,18) * (2, 17) * (3, 16)
+    # (1,3) * (2,2) * (3, 1) * (4, 0)
+    for i in range(0, col-(n-1)):
+        for j in range(0, col-(n-1)):
+            prod = 1
+            for k in range(0, n):
+                prod *= matrix[i+k][(n-1)-k+j]
+                # print(i+k, (n-1)-k+j)
+            max_prod = max(max_prod, prod)
+    return max_prod
 
 
 def same_row(n):
@@ -83,12 +110,31 @@ def same_col(n):
     return max_prod
 
 
-def same_dia_l2r(n):
-    pass
-
-
 def same_dia_r2l(n):
-    pass
+    rows = grid.split("\n")
+    col = 0
+    matrix = []
+    max_prod = 1
+    for row in rows:
+        xrow = row.split()
+        r=[]
+        for x in xrow:
+            r.append(int(x))
+        matrix.append(r)
+        col += 1
+    # (0,0) * (1,1) * (2, 2) * (3, 3)
+    # (0,1) * (1,2) * (2, 3) * (3, 4)
+    # (0,16) * (1,17) * (2, 18) * (3, 19)
+    # (1,0) * (2,1) * (3, 2) * (4, 3)
+    # (16,16) * (17,17) * (18, 18) * (19, 19)
+    for i in range(0, col-(n-1)):
+        for j in range(0, col-(n-1)):
+            prod = 1
+            for k in range(0, n):
+                prod *= matrix[i+k][k+j]
+                # print(i+k, k+j)
+            max_prod = max(max_prod, prod)
+    return max_prod
 
 
 if __name__ == "__main__":
@@ -99,3 +145,8 @@ if __name__ == "__main__":
     # 48477312
     # print(same_col(n))
     # 51267216
+    # print(same_dia_l2r(n))
+    # 70600674
+
+    print(same_dia_r2l(n))
+    # 40304286
