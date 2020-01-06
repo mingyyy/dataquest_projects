@@ -10,9 +10,11 @@
 - Problem_8: done
 - Problem_9: done
 - Problem_10: done. (faster isprime method)
-- Problem_11: TBC
+- Problem_11: done. (Need to check the results)
 - Problem_12: performance issue. 480 divisor now. 
 - Problem_13: done
 - Problem_14: done
 - Problem_15: done 
 - Problem_16: done
+- Problem_17:
+- Problem_18:

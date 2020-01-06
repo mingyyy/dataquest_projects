@@ -19,6 +19,7 @@ class recursionlimit:
 
 
 def isprime(x):
+    '''Returns True if n is prime. O(N)'''
     result = True
     for i in range(2, x):
         if x % i == 0:
@@ -52,9 +53,31 @@ def isprime2(n):
     return True
 
 
+def isprime3(n):
+    """
+    Returns True if n is prime. Assumes that n is a positive natural number. O(sqrt(N))
+    """
+    # We know 1 is not a prime number
+    if n == 1:
+        return False
+
+    i = 2
+    # This will loop from 2 to int(sqrt(x))
+    while i*i <= n:
+        # Check if i divides x without leaving a remainder
+        if n % i == 0:
+            # This means that n has a factor in between 2 and sqrt(n)
+            # So it is not a prime number
+            return False
+        i += 1
+    # If we did not find any factor in the above loop,
+    # then n is a prime number
+    return True
+
+
 # method 1
 def max_prime_factor(n):
-    if isprime2(n) is True:
+    if isprime3(n) is True:
         return n
     factor = 0
 
@@ -64,7 +87,7 @@ def max_prime_factor(n):
         m = (n+1)/2
 
     for i in range(2, int(m)):
-        if n % i == 0 and isprime2(i) is True:
+        if n % i == 0 and isprime3(i) is True:
             factor = i
     return factor
 
@@ -112,11 +135,15 @@ print(f'--{time.time() - start_time} seconds--')
 # 3439333
 # --541.6724359989166 seconds--
 
+
 # sqrt isprime 6008514751
 # 3439333
 # --526.5467047691345 seconds--
 
 # with isprime2 method 6008514751
 # 3439333
-# --607.6169321537018 seconds--
+# --555.4595489501953 seconds--
 
+# with isprime3 method 6008514751
+# 3439333
+# --540.4685451984406 seconds--

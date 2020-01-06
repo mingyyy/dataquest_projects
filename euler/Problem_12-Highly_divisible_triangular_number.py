@@ -23,13 +23,14 @@ def divisors(n):
     return counter
 
 
-i = 2079
+i = 11324
 x = 0
-while x <= 400:
+while x <= 500:
     i += 1
     x = max(x, divisors(triangle(i)))
+    print(i, x)
 print(f'{i}th triangle number is {triangle(i)} which has {x} divisors.')
 
 # first over 200 divisor:  2015th triangle number is 2031120 which has 240 divisors.
 # first over 300 divisor:  2079th triangle number is 2162160 which has 320 divisors.
-# first over 400 divisor:
+# first over 400 divisor:  5984th triangle number is 17907120 which has 480 divisors.

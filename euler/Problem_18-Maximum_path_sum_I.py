@@ -21,5 +21,40 @@ Find the maximum total from top to bottom of the triangle below:
 91 71 52 38 17 14 91 43 58 50 27 29 48
 63 66 04 68 89 53 67 30 73 16 69 87 40 31
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
-NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
+NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route.
+However, Problem 67, is the same challenge with a triangle containing one-hundred rows;
+it cannot be solved by brute force, and requires a clever method! ;o)
 """
+
+
+def Next_Num(current_pos, current_level, prev_level):
+    if current_pos == 0 or current_pos == len(current_level)-1:
+        total = current_level[current_pos] + prev_level[current_pos]
+    else:
+        total = current_level[current_pos] + max(prev_level[current_pos - 1], prev_level[current_pos])
+    return total
+
+paths = []
+def Max_Path_Sum(triangle):
+    '''triangle being a list of a list'''
+    current_level = 0
+    levels = len(triangle)
+    for l in range(levels-1, 0, -1):
+        n = len(triangle[l])
+        current_level = triangle[l]
+        prev_level = triangle[l-1]
+        total = 0
+        for i in range(n):
+            total += current_level[i] + Next_Num(i, prev_level)
+
+
+
+
+
+    total = 0
+    return total
+
+
+if __name__ == '__main__':
+    res = Max_Path_Sum([[3],[7, 4],[2, 4, 6],[8, 5, 9, 3]])
+    print(res)
