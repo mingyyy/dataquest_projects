@@ -45,9 +45,7 @@ def Max_Path_Sum(triangle):
         prev_level = triangle[l-1]
         total = 0
         for i in range(n):
-            total += current_level[i] + Next_Num(i, prev_level)
-
-
+            total += current_level[i] + Next_Num(i, current_level, prev_level)
 
 
 

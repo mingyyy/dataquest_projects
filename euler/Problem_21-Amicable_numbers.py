@@ -12,7 +12,7 @@ def sum_amicable(n):
     for i in range(n+1):
         a = i
         b = sum(proper_divisor(i))
-        if sum(proper_divisor(b)) == a:
+        if sum(proper_divisor(b)) == a and a != b:
             total += a
     return total
 
@@ -35,5 +35,5 @@ def proper_divisor(n):
 
 
 if __name__ == '__main__':
-    n = 100
+    n = 10000
     print(sum_amicable(n))

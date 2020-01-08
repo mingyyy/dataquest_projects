@@ -18,3 +18,7 @@
 - Problem_16: done
 - Problem_17:
 - Problem_18:
+- Problem_19:
+- Problem_20:
+- Problem_21: done
+- Problem_22:
