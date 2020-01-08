@@ -37,3 +37,4 @@ def proper_divisor(n):
 if __name__ == '__main__':
     n = 10000
     print(sum_amicable(n))
+# 31626
