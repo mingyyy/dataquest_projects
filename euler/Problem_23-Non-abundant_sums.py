@@ -40,3 +40,48 @@ def check_abundancy(n):
         return 0
     elif sum(proper_divisor(n)) > n:
         return 1
+
+
+def get_abundant(upper_limit):
+    n = 11
+    result = []
+    while n <= upper_limit:
+        n += 1
+        if check_abundancy(n):
+            result.append(n)
+    print(f'There are {len(result)} abundant numbers under {upper_limit}.')
+    return result
+
+
+def get_2sum(num_list):
+    res = []
+    for i, num in enumerate(num_list):
+        j = i
+        sum2 = num_list[j] + num
+        while sum2 < upper_limit:
+            if sum2 not in res:
+                res.append(sum2)
+            j += 1
+            sum2 = num_list[j] + num
+
+    print(f'There are {len(res)} numbers under {upper_limit} can be written as the sum of two abundant numbers.')
+    return res
+
+
+if __name__ == '__main__':
+    upper_limit = 1000
+    num_list = get_abundant(upper_limit)
+    total = 0
+    nums_2sum = get_2sum(num_list)
+    #
+    # print(num_list)
+    # print(nums_2sum)
+
+    # for i in range(1, upper_limit+1):
+    #     if i not in nums_2sum:
+    #         total += i
+
+    for i in range(1, upper_limit + 1):
+        total += i
+    print(total - sum(nums_2sum))
+
